@@ -1,7 +1,7 @@
 import React from 'react'
 import { auth , provider  } from '../../firebase.js';
 import { signInWithPopup } from 'firebase/auth';
-
+import '../App.css'
 
 const SignInButton = () => {
     const SignInGoogle = () => {
@@ -15,7 +15,7 @@ const SignInButton = () => {
     }
  
     return (
-    <button onClick={SignInGoogle}>Sign In</button>
+    <button className='Login-btn' onClick={SignInGoogle}>ログインする</button>
   )
 }
 

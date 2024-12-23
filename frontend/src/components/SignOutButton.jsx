@@ -1,6 +1,7 @@
 import React from 'react'
 import { auth } from '../../firebase.js'
 import { signOut } from 'firebase/auth'
+import '../App.css'
 
 
 // サインアウトを実装するコンポーネント
@@ -16,7 +17,7 @@ export const SignOutButton = () => {
   }
 
   return (
-    <button onClick={handleSignOut}>Sign Out</button>
+    <button className='Sign-out-btn' onClick={handleSignOut}>Sign Out</button>
   )
 }
   
