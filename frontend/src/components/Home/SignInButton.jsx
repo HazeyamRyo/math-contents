@@ -1,5 +1,5 @@
 import React from 'react'
-import { auth , provider  } from '../../firebase.js';
+import { auth , provider  } from '../../../firebase.js';
 import { signInWithPopup } from 'firebase/auth';
 import './SignInButton.css'
 

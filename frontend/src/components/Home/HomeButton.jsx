@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import './HomeButton.css'
 
 const HomeButton = () => {
   const navigate = useNavigate()
@@ -10,9 +11,11 @@ const HomeButton = () => {
   }
 
   return (
+    <div className='HomeButton'>
     <Button variant="contained" color="primary" onClick={handleClick}>
-      ホームに戻る
+      トップ画面に戻る
     </Button>
+    </div>
   )
 }
 

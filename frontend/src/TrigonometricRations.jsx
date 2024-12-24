@@ -1,16 +1,15 @@
 import React from 'react'
-import { ButtonAppBar } from './components/ButtonAppBar.jsx'
-import { HomeButton } from './components/HomeButton.jsx';
+import { ButtonAppBar } from './components/Home/ButtonAppBar.jsx'
+import { HomeButton } from './components/Home/HomeButton.jsx';
+import { GameSettings } from './components/GameSetting/GameSetting.jsx';
+
 
 
 function TrigonometricRations() {
   return (
     <>
       <ButtonAppBar />
-      <div>
-        <h1>三角比の値を辺の長さから求める</h1>
-        {/* ここにコンテンツを追加 */}
-      </div>
+      <GameSettings />
       <HomeButton />
       
     </>

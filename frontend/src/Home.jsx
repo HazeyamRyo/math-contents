@@ -1,7 +1,7 @@
 import React from 'react'
-import './Home.css'
-import { ButtonAppBar } from './components/ButtonAppBar.jsx'
-import { Contents } from './components/Contents.jsx'
+import './App.css'
+import { ButtonAppBar } from './components/Home/ButtonAppBar.jsx'
+import { Contents } from './components/Home/Contents.jsx'
 
 function Home() {
   return (
@@ -14,4 +14,4 @@ function Home() {
   )
 }
 
-export default Home;
+export { Home } ;

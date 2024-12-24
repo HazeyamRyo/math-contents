@@ -2,7 +2,7 @@ import React from 'react'
 import { SignInButton } from './SignInButton.jsx'
 import { SignOutButton } from './SignOutButton.jsx'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth , provider  } from '../../firebase.js';
+import { auth , provider  } from '../../../firebase.js';
 import './Login.css'
 
 

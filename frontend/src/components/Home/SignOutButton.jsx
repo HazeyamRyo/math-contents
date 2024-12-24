@@ -1,5 +1,5 @@
 import React from 'react'
-import { auth } from '../../firebase.js'
+import { auth } from '../../../firebase.js'
 import { signOut } from 'firebase/auth'
 import './SignOutButton.css'
 
