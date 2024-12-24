@@ -117,7 +117,7 @@ const GameSettings = () => {
         </div>
       )}
       {isGameActive && (
-        <div className="container">
+        <div className="game-setting-container">
           <GameInfo timer={timer} score={score} />
           <button onClick={resetGame}>リセット</button>
         </div>

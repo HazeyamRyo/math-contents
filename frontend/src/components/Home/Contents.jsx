@@ -4,7 +4,7 @@ import './Contents.css'
 
 export const Contents = () => {
   return (
-    <div className='container'>
+    <div className='contents-container'>
       <h1>コンテンツ一覧</h1>
       <List 
         title='★三角比の値を求める' 

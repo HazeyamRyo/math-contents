@@ -5,7 +5,7 @@
     justify-content: center;
 }
   
-  .container {
+  .game-setting-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -14,7 +14,7 @@
     border-radius: 8px;
   }
   
-  h1, h2 {
+  .game-settings h1, h2 {
     text-align: center;
     color: #333;
   }
@@ -30,23 +30,23 @@
     width: 60%;
   }
   
-  label {
+  .game-settings label {
     margin: 10px 0;
     font-size: 16px;
     color: #333;
   }
   
-  input[type="radio"], input[type="number"] {
+  .game-settings input[type="radio"], input[type="number"] {
     margin-right: 10px;
   }
   
-  input[type="number"] {
+  .game-settings input[type="number"] {
     width: 60px;
     padding: 5px;
     font-size: 16px;
   }
   
-  button {
+  .game-settings button {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -57,7 +57,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .game-settings button:hover {
     background-color: #0056b3;
   }
   
