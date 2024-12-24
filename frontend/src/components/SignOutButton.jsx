@@ -1,7 +1,7 @@
 import React from 'react'
 import { auth } from '../../firebase.js'
 import { signOut } from 'firebase/auth'
-import '../App.css'
+import './SignOutButton.css'
 
 
 // サインアウトを実装するコンポーネント

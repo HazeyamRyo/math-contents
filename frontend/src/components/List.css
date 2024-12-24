@@ -1,0 +1,48 @@
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: rgb(191, 224, 243);
+    border-radius: 5px;
+    width: 40%;
+    border: 2px solid rgb(49, 100, 238); ;
+}
+
+.contents ul{
+    list-style-type: none;
+    padding: 0;
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contents ul p{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid rgb(49, 100, 238);
+    background-color: #2309b9;
+    color: #ffffff;
+}
+
+.contents ul li{
+    padding: 10px;
+    border-bottom: 1px solid rgb(49, 100, 238);
+    font-weight: normal;
+    padding-top: 20px;
+    font-size: medium;
+}
+
+.contents ul li :first-child{
+    font-weight: bold;
+}
+
+.contents ul li a{
+    text-decoration: none;
+    color: rgb(78, 134, 238);
+}
+
+.contents ul li:hover{
+    background-color: rgb(246, 248, 255);
+}

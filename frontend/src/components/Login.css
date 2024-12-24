@@ -1,0 +1,16 @@
+.User{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.User-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+

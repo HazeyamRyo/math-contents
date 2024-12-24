@@ -1,7 +1,7 @@
 import React from 'react'
 import { auth , provider  } from '../../firebase.js';
 import { signInWithPopup } from 'firebase/auth';
-import '../App.css'
+import './SignInButton.css'
 
 const SignInButton = () => {
     const SignInGoogle = () => {

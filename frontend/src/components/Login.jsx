@@ -3,9 +3,7 @@ import { SignInButton } from './SignInButton.jsx'
 import { SignOutButton } from './SignOutButton.jsx'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth , provider  } from '../../firebase.js';
-import '../App.css'
-
-
+import './Login.css'
 
 
 function Login() {

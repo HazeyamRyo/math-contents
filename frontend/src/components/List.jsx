@@ -1,5 +1,6 @@
 import React from 'react'
-import '../App.css'
+import { Link } from 'react-router-dom'
+import './List.css'
 
 export const List = (props) => {
   return (
@@ -7,11 +8,10 @@ export const List = (props) => {
       <ul> <p>{props.title}</p>
         {props.items.map((item, index) => (
           <li key={index}>
-            <a href={item.link} alt={item.text}>{item.text}</a>
+            <Link to={item.link}>{item.text}</Link>
           </li>
         ))}
       </ul>
     </div>
   )
 }
-
