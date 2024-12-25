@@ -1,0 +1,31 @@
+.difficulty-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .difficulty-label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    margin-right: 10px;    
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .difficulty-input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #007bff; /* ラジオボタンの色 */
+    transform: scale(1.5); /* ラジオボタンを大きくする */
+  }
+  
+  .difficulty-input[type="radio"]:checked + .difficulty-label {
+    color: #ff0000; /* チェックされたときの色を赤に */
+  }
+  
+  .difficulty-input[type="radio"]:hover + .difficulty-label {
+    color: #0056b3; /* ホバー時の色を青に */
+  }

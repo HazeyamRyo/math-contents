@@ -1,4 +1,5 @@
 import React from "react";
+import "./NumberOfQuestionsInput.css";
 
 const NumberOfQuestionsInput = ({ numberOfQuestions, setNumberOfQuestions }) => {
   return (

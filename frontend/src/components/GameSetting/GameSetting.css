@@ -3,6 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url(../../assets/GAME10-1024x576.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 30px 0;
 }
   
   .game-setting-container {
@@ -23,37 +27,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(216, 216, 215);
+    background-color: #fff;
     margin: 20px;
     padding: 20px;
     border-radius: 8px;
     width: 60%;
+    border: #007bff 4px solid;
   }
   
-  .game-settings label {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #333;
-  }
   
-  .game-settings input[type="radio"], input[type="number"] {
-    margin-right: 10px;
-  }
-  
-  .game-settings input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  .game-settings button {
+  .game-settings-button {
     margin-top: 20px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 24px;
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
   }
   
@@ -65,5 +55,16 @@
     font-size: 24px;
     color: #ff0000;
     margin-top: 20px;
+  }
+
+  .button-logo{
+    color: #fff;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50%;
+    width: 80%;
   }
   

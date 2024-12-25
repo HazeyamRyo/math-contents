@@ -1,10 +1,11 @@
 import React from "react";
+import "./DifficultySelector.css";
 
 const DifficultySelector = ({ difficulty, onDifficultyChange , props }) => {
   return (
-    <div>
-      <label>
-        <input
+    <div className="difficulty-selector">
+      <label className="difficulty-label">
+        <input className="difficulty-input"
           type="radio"
           name="difficulty"
           value="normal"
@@ -13,8 +14,8 @@ const DifficultySelector = ({ difficulty, onDifficultyChange , props }) => {
         />
         {props.normalDifficulty}
       </label>
-      <label>
-        <input
+      <label className="difficulty-label">
+        <input className="difficulty-input"
           type="radio"
           name="difficulty"
           value="hard"

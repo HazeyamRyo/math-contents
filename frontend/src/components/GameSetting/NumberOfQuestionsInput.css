@@ -1,0 +1,39 @@
+numberOfQuestionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  #numberOfQuestionsContainer label {
+    font-size: 18px;
+    color: #5790fc;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+  }
+  
+  #numberOfQuestionsContainer input[type="number"] {
+    width: 80px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+  
+  #numberOfQuestionsContainer input[type="number"]:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+  
+  #numberOfQuestionsContainer input[type="number"]::-webkit-inner-spin-button,
+  #numberOfQuestionsContainer input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  #numberOfQuestionsContainer input[type="number"]::-moz-appearance {
+    appearance: none;
+  }
