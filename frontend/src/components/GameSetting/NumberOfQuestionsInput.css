@@ -7,7 +7,8 @@ numberOfQuestionsContainer {
   
   #numberOfQuestionsContainer label {
     font-size: 18px;
-    color: #5790fc;
+    color: #333;
+    text-shadow: #007bff 1px 1px;
     margin-bottom: 10px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;

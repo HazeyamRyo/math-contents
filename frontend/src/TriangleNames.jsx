@@ -8,6 +8,7 @@ function TriangleNames() {
   return (
     <div className='Container'>
       <ButtonAppBar />
+      <h2 className='Title'>三角形の辺の名前を覚えよう</h2>
       <GameSettings />
       <HomeButton />
     </div>

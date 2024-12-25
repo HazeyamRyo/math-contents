@@ -9,6 +9,7 @@ function TrigonometricRationsPart2() {
   return (
     <>
       <ButtonAppBar />
+      <h2 className='Title'>三角比の値を角度から求めよう</h2>
       <GameSettings />
       <HomeButton />
     </>

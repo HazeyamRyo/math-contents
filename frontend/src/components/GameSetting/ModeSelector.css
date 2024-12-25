@@ -15,7 +15,7 @@
     color: #052b05; /* ネオン緑 */
     margin-left: 10px;
     font-family: 'Press Start 2P', cursive; /* ゲーミングフォント */
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+    text-shadow: #2df157 1px 1px; /* テキストに影をつける */
   }
   
   .mode-option-input[type="radio"] {
