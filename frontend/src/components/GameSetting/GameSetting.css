@@ -28,16 +28,21 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    margin: 20px;
+    margin: 5px;
     padding: 20px;
     border-radius: 8px;
     width: 60%;
     border: #007bff 4px solid;
   }
   
+  .setting h2 {
+    color: #007bff;
+    font-size: 24px;
+    margin: 5px;
+  }
   
   .game-settings-button {
-    margin-top: 20px;
+    margin-top: 2px;
     padding: 10px 20px;
     font-size: 24px;
     color: #fff;

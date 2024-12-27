@@ -93,13 +93,13 @@ const GameSettings = () => {
     <div className="game-settings">
       {!isGameActive && (
         <div className="setting">
-          <h2>設定</h2>
+          <h2 className="setting-h2">設定</h2> 
           <ModeSelector 
             mode={mode} 
             onModeChange={handleModeChange} 
             props={{normalMode : "通常モード",
                     timeAttackMode : "タイムアタックモード" } }
-          /><br />
+          />
           {mode === "normal" && (
             <NumberOfQuestionsInput
               numberOfQuestions={numberOfQuestions}
@@ -107,7 +107,7 @@ const GameSettings = () => {
             />
           )}
           {mode === "timeattack" && <div id="timeAttackInfo">10問固定</div>}
-          <br />
+          
           <DifficultySelector
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
