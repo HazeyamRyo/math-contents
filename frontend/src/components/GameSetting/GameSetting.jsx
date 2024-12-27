@@ -7,10 +7,12 @@ import { GameInfo } from "./GameInfo";
 import { Logo } from "./Logo";
 import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
+import { TrigonometricRationsApp } from "../TrigonometricRations/TrigonometricRationsApp";
 
 
 
-const GameSettings = (props) => {   // goalをpropsで受け取る
+
+const GameSettings = (props) => {   // goal,titleをpropsで受け取る
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
   const [numberOfQuestions, setNumberOfQuestions] = useState(10);
@@ -93,6 +95,8 @@ const GameSettings = (props) => {   // goalをpropsで受け取る
   return (
     <div className="game-settings">
       {!isGameActive && (
+      <>
+        <h2 className='Title'>{props.title}</h2>
         <div className="setting">
           <h2 className="setting-h2">設定</h2> 
           <ModeSelector 
@@ -121,6 +125,7 @@ const GameSettings = (props) => {   // goalをpropsで受け取る
             <Logo />
           </div>
         </div>
+      </>
       )}
       {isGameActive && (
         <div className="game-active-container">
@@ -131,6 +136,7 @@ const GameSettings = (props) => {   // goalをpropsで受け取る
             timer={timer}
             isTimeAttackMode={isTimeAttackMode}
           />
+          <TrigonometricRationsApp difficulty = {difficulty}/>
           <button className="game-settings-button" onClick={resetGame}>リセット</button>
         </div>
       )}

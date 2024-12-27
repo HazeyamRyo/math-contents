@@ -9,8 +9,7 @@ function TrigonometricRations() {
   return (
     <>
       <ButtonAppBar />
-      <h2 className='Title'>三角比を辺の長さから求めよう</h2>
-      <GameSettings goal = {"三角比を辺の長さから求めることができる。"}/>
+      <GameSettings title = {"三角比を辺の長さから求めよう"} goal = {"三角比を辺の長さから求めることができる。"}/>
       <HomeButton />
     
     </>

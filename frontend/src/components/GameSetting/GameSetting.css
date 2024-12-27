@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(../../assets/GAME10-1024x576.png);
     background-size: cover;
     background-repeat: no-repeat;
     margin: 30px 0;
+    animation: fadeIn 1s;
 }
   
   .game-active-container {
@@ -16,6 +16,7 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    animation: fadeIn 1s;
   }
   
   .game-settings h1, h2 {
@@ -73,3 +74,14 @@
     width: 80%;
   }
   
+/* アニメーション */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
