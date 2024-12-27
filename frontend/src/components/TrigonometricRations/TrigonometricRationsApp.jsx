@@ -1,11 +1,11 @@
 import React from 'react'
-import{ Header } from '../questionComponents/Header/Header'
-import './app.css'
 
-export const TrigonometricRationsApp = () => {
+
+
+export const TrigonometricRationsApp = (props) => {
   return (
     <div>
-        <Header />
+       
     </div>
   )
 }

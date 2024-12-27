@@ -3,6 +3,7 @@ import { Difficulty } from './Difficulty'
 import { Goal } from './Goal'
 import { NumberOfQuestions } from './NumberOfQuestions'
 import { Timer } from './Timer'
+import "./Header.css"
 
 export const Header = (props) => {
   
@@ -13,7 +14,7 @@ export const Header = (props) => {
         <NumberOfQuestions score={props.score}  />
         <Difficulty  difficulty={props.difficulty}/>
         <Goal  goal={props.goal}/>
-        <Timer timer={props.timer}/>
+        <Timer isTimeAttackMode = {props.isTimeAttackMode} timer={props.timer}/>
     </header>
   )
 }

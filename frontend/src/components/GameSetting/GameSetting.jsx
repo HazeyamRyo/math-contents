@@ -6,9 +6,11 @@ import { Countdown } from "./Countdown";
 import { GameInfo } from "./GameInfo";
 import { Logo } from "./Logo";
 import "./GameSetting.css";
+import { Header } from "../questionComponents/Header/Header";
 
 
-const GameSettings = () => {
+
+const GameSettings = (props) => {   // goalをpropsで受け取る
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
   const [numberOfQuestions, setNumberOfQuestions] = useState(10);
@@ -73,8 +75,7 @@ const GameSettings = () => {
     setIsGameActive(true);
     if (isTimeAttackMode) {
       setTimer(0);
-    }
-    // Additional game logic like generating questions goes here
+    } ;
   };
 
   const resetGame = () => {
@@ -122,8 +123,14 @@ const GameSettings = () => {
         </div>
       )}
       {isGameActive && (
-        <div className="game-setting-container">
-          <GameInfo timer={timer} score={score} />
+        <div className="game-active-container">
+          <Header 
+            score={score}
+            difficulty={difficulty}
+            goal={props.goal}
+            timer={timer}
+            isTimeAttackMode={isTimeAttackMode}
+          />
           <button className="game-settings-button" onClick={resetGame}>リセット</button>
         </div>
       )}
