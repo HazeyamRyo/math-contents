@@ -45,6 +45,7 @@ const TrigonometricRationsApp = (props) => {
   const [choice,setChoice] = useState(choices.find(choice => choice.id === question.id));
   
   
+  
   // 問題文のテキストを変更する関数
   function handleQuestionTexts() {
     setQuestionTexts(getNextQuestionText(questionText));
@@ -79,11 +80,17 @@ const TrigonometricRationsApp = (props) => {
   // 問題の挙動を作る
   function displayQuestion() {
     handleQuestionTexts();
+    props.setHintVisible(false); //ヒントを非表示にする関数。GameSettingからpropsで受け取る
     if (questionText === questionTexts[2]) {
-    setQuestion(getNextQuestion(usedQuestions));
-    props.scoreChange(); //スコアを+1する関数。GameSettingからpropsで受け取る
+      if (usedQuestions.length >= props.numberOfQuestions) {
+        props.endGame(); // ゲームを終了する関数。GameSettingからpropsで受け取る
+      } else {
+        setQuestion(getNextQuestion(usedQuestions));
+        props.scoreChange(); //スコアを+1する関数。GameSettingからpropsで受け取る
+      }
+    }
     };
-  }
+  
 
   //正誤判定する関数
   function judgeAnswer(answer) {
@@ -92,7 +99,7 @@ const TrigonometricRationsApp = (props) => {
     if (answer === currentAnswer) {
       correctAnswer();
     } else {
-      alert("不正解！");
+      wrongAnswer();
     }
   };
 
@@ -102,6 +109,12 @@ const TrigonometricRationsApp = (props) => {
     displayQuestion();
   }
 
+  //不正解だった時の処理
+  function wrongAnswer() {
+    alert("不正解！");
+    props.setHintVisible(true); //ヒントを表示する関数。GameSettingからpropsで受け取る
+  }
+
 
 
 return (
@@ -109,7 +122,7 @@ return (
     <div>
       <MathJax>
         <div>{questionText.text}</div>
-        <div>{questionText.hint}</div>
+        {props.hintVisible && <div className="hint">ヒント: {questionText.hint}</div>}
       </MathJax>
       <img src={questionImg}  />
       <MathJax>

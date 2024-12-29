@@ -1,4 +1,4 @@
-numberOfQuestionsContainer {
+.numberOfQuestionsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,12 +29,8 @@ numberOfQuestionsContainer {
     outline: none;
   }
   
-  #numberOfQuestionsContainer input[type="number"]::-webkit-inner-spin-button,
-  #numberOfQuestionsContainer input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  #numberOfQuestionsContainer input[type="number"]::-moz-appearance {
-    appearance: none;
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
   }

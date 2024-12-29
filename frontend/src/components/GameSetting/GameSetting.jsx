@@ -15,13 +15,13 @@ import { TrigonometricRationsApp } from "../TrigonometricRations/TrigonometricRa
 const GameSettings = (props) => {   // goal,titleをpropsで受け取る
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
-  const [numberOfQuestions, setNumberOfQuestions] = useState(10);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(9);
   const [isTimeAttackMode, setIsTimeAttackMode] = useState(false);
   const [countdown, setCountdown] = useState(null);
   const [timer, setTimer] = useState(0);
   const [score, setScore] = useState(1);
   const [isGameActive, setIsGameActive] = useState(false);
-  const [hintVisible, setHintVisible] = useState({ normal: true, hard: false });
+  const [hintVisible, setHintVisible] = useState(false);
 
   const timerRef = useRef(null);
   const startTimeRef = useRef(null);
@@ -70,7 +70,7 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
   };
 
   const handleStart = () => {
-    setScore(0);
+    setScore(1);
     if (isTimeAttackMode) {
       setCountdown(3);
     } else {
@@ -94,6 +94,8 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
     setTimer(0);
     setCountdown(null);
     setScore(0);
+    setHintVisible(false);
+    alert("ゲームを終了します");
     // Reset other game states if needed
   };
 
@@ -114,6 +116,7 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
             <NumberOfQuestionsInput
               numberOfQuestions={numberOfQuestions}
               setNumberOfQuestions={setNumberOfQuestions}
+              maxQuestions={9}
             />
           )}
           {mode === "timeattack" && <div id="timeAttackInfo">10問固定</div>}
@@ -141,7 +144,14 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
             timer={timer}
             isTimeAttackMode={isTimeAttackMode}
           />
-          <TrigonometricRationsApp difficulty = {difficulty} scoreChange={ handleScore }/>
+          <TrigonometricRationsApp 
+            difficulty = {difficulty} 
+            scoreChange={ handleScore } 
+            hintVisible = {hintVisible}
+            setHintVisible = {setHintVisible}
+            endGame = {resetGame}
+            numberOfQuestions = {numberOfQuestions}
+          />
           <button className="game-settings-button" onClick={resetGame}>リセット</button>
         </div>
       )}
