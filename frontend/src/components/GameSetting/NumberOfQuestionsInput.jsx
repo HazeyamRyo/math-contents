@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./NumberOfQuestionsInput.css";
 
-const NumberOfQuestionsInput = ({ numberOfQuestions, setNumberOfQuestions , maxQuestions}) => {
+const NumberOfQuestionsInput = ({ numberOfQuestions, setNumberOfQuestions , maxQuestions, timeAttackMode}) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {

@@ -9,7 +9,12 @@ function TrigonometricRations() {
   return (
     <>
       <ButtonAppBar />
-      <GameSettings title = {"三角比を辺の長さから求めよう"} goal = {"三角比を辺の長さから求めることができる。"}/>
+      <GameSettings 
+      title = {"三角比を辺の長さから求めよう"} 
+      goal = {"三角比を辺の長さから求めることができる。"}
+      maxQuestions = {9}
+      timeAttackModeHas = {5}
+      />
       <HomeButton />
     
     </>

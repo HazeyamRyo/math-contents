@@ -12,7 +12,7 @@ import { TrigonometricRationsApp } from "../TrigonometricRations/TrigonometricRa
 
 
 
-const GameSettings = (props) => {   // goal,titleをpropsで受け取る
+const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHasをpropsで受け取る
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
   const [numberOfQuestions, setNumberOfQuestions] = useState(9);
@@ -57,7 +57,7 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
     setMode(selectedMode);
     setIsTimeAttackMode(selectedMode === "timeattack");
     if (selectedMode === "timeattack") {
-      setNumberOfQuestions(10);
+      setNumberOfQuestions(props.timeAttackModeHas); // Time Attack mode has 10 questions
     }
   };
 
@@ -116,10 +116,11 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
             <NumberOfQuestionsInput
               numberOfQuestions={numberOfQuestions}
               setNumberOfQuestions={setNumberOfQuestions}
-              maxQuestions={9}
+              maxQuestions={props.maxQuestions}
+              timeAttackMode={isTimeAttackMode}
             />
           )}
-          {mode === "timeattack" && <div id="timeAttackInfo">10問固定</div>}
+          {mode === "timeattack" && <div id="timeAttackInfo">{`タイムアタックモードの問題数は${props.timeAttackModeHas}問です！`}</div>}
           
           <DifficultySelector
             difficulty={difficulty}

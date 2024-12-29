@@ -22,12 +22,14 @@
     border-radius: 4px;
     text-align: center;
     transition: border-color 0.3s ease;
+    appearance: auto;
   }
   
   #numberOfQuestionsContainer input[type="number"]:focus {
     border-color: #0056b3;
     outline: none;
   }
+
   
   .error-message {
     color: red;
