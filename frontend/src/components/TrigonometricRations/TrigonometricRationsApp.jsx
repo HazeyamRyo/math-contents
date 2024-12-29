@@ -5,9 +5,9 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 // 問題文とヒントのテキスト
 const questionTexts = [
-  { text: "次の三角形の\\(\\sin\\theta\\)の値を求めなさい。", hint: "\\(\\sin\\theta = \\frac{\\text{対辺}}{\\text{斜辺}}\\)です！", id: 1 },
-  { text: "次の三角形の\\(\\cos\\theta\\)の値を求めなさい。", hint: "\\(\\cos\\theta = \\frac{\\text{隣辺}}{\\text{斜辺}}\\)です！", id: 2 },
-  { text: "次の三角形の\\(\\tan\\theta\\)の値を求めなさい。", hint: "\\(\\tan\\theta = \\frac{\\text{対辺}}{\\text{隣辺}}\\)です！", id: 3 }
+  { text: "次の三角形の\\(\\sin\\theta\\)の値を求めなさい。", hint: "\\(\\sin\\theta = \\frac{\\text{対辺}}{\\text{斜辺}}\\)です！", id: 0 }, //idの値は問題のanswerのindexと対応している
+  { text: "次の三角形の\\(\\cos\\theta\\)の値を求めなさい。", hint: "\\(\\cos\\theta = \\frac{\\text{隣辺}}{\\text{斜辺}}\\)です！", id: 1 },
+  { text: "次の三角形の\\(\\tan\\theta\\)の値を求めなさい。", hint: "\\(\\tan\\theta = \\frac{\\text{対辺}}{\\text{隣辺}}\\)です！", id: 2 }
 ];
 
 // 問題のデータ
@@ -24,15 +24,15 @@ const questions = [
 ];
 // 選択肢のデータ
 const choices = [
-  { id: 112, choice: ["\\(\\frac{1}{\\sqrt{2}}\\)", "\\(\\frac{1}{1}=1\\)", "\\(\\frac{\\sqrt{2}}{1}=\\sqrt{2}\\)"], correctNumberSin: 0, correctNumbercos: 0, correctNumbertan: 1 },
-  { id: 132, choice: ["\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{1}{\\sqrt{3}}\\)", "\\(\\frac{\\sqrt{3}}{1}=\\sqrt{3}\\)", "\\(\\frac{2}{1}=2\\)", "\\(\\frac{2}{\\sqrt{3}}\\)"], correctNumberSin: 0, correctNumbercos: 1, correctNumbertan: 3 },
-  { id: 123, choice: ["\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{1}{\\sqrt{3}}\\)", "\\(\\frac{\\sqrt{3}}{1}=\\sqrt{3}\\)", "\\(\\frac{2}{1}=2\\)", "\\(\\frac{2}{\\sqrt{3}}\\)"], correctNumberSin: 1, correctNumbercos: 0, correctNumbertan: 2 },
-  { id: 253, choice: ["\\(\\frac{2}{3}\\)", "\\(\\frac{2}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{2}\\)", "\\(\\frac{3}{2}\\)", "\\(\\frac{3}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{3}\\)"], correctNumberSin: 0, correctNumbercos: 5, correctNumbertan: 1 },
-  { id: 235, choice: ["\\(\\frac{2}{3}\\)", "\\(\\frac{2}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{2}\\)", "\\(\\frac{3}{2}\\)", "\\(\\frac{3}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{3}\\)"], correctNumberSin: 5, correctNumbercos: 0, correctNumbertan: 2 },
-  { id: 345, choice: ["\\(\\frac{3}{5}\\)", "\\(\\frac{3}{4}\\)", "\\(\\frac{4}{3}\\)", "\\(\\frac{4}{5}\\)", "\\(\\frac{5}{4}\\)", "\\(\\frac{5}{3}\\)"], correctNumberSin: 0, correctNumbercos: 3, correctNumbertan: 1 },
-  { id: 354, choice: ["\\(\\frac{3}{5}\\)", "\\(\\frac{3}{4}\\)", "\\(\\frac{4}{3}\\)", "\\(\\frac{4}{5}\\)", "\\(\\frac{5}{4}\\)", "\\(\\frac{5}{3}\\)"], correctNumberSin: 3, correctNumbercos: 0, correctNumbertan: 2 },
-  { id: 51213, choice: ["\\(\\frac{5}{13}\\)", "\\(\\frac{5}{12}\\)", "\\(\\frac{12}{5}\\)", "\\(\\frac{12}{13}\\)", "\\(\\frac{13}{12}\\)", "\\(\\frac{13}{5}\\)"], correctNumberSin: 0, correctNumbercos: 3, correctNumbertan: 1 },
-  { id: 51312, choice: ["\\(\\frac{5}{13}\\)", "\\(\\frac{5}{12}\\)", "\\(\\frac{12}{5}\\)", "\\(\\frac{12}{13}\\)", "\\(\\frac{13}{12}\\)", "\\(\\frac{13}{5}\\)"], correctNumberSin: 3, correctNumbercos: 0, correctNumbertan: 2 }
+  { id: 112, choice: ["\\(\\frac{1}{\\sqrt{2}}\\)", "\\(\\frac{1}{1}=1\\)", "\\(\\frac{\\sqrt{2}}{1}=\\sqrt{2}\\)"], answer: [ 0, 0, 1] },
+  { id: 132, choice: ["\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{1}{\\sqrt{3}}\\)", "\\(\\frac{\\sqrt{3}}{1}=\\sqrt{3}\\)", "\\(\\frac{2}{1}=2\\)", "\\(\\frac{2}{\\sqrt{3}}\\)"], answer: [ 0, 1, 3]  },
+  { id: 123, choice: ["\\(\\frac{\\sqrt{3}}{2}\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{1}{\\sqrt{3}}\\)", "\\(\\frac{\\sqrt{3}}{1}=\\sqrt{3}\\)", "\\(\\frac{2}{1}=2\\)", "\\(\\frac{2}{\\sqrt{3}}\\)"], answer: [ 1, 0, 2]  },
+  { id: 253, choice: ["\\(\\frac{2}{3}\\)", "\\(\\frac{2}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{2}\\)", "\\(\\frac{3}{2}\\)", "\\(\\frac{3}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{3}\\)"], answer: [ 0, 5, 1] },
+  { id: 235, choice: ["\\(\\frac{2}{3}\\)", "\\(\\frac{2}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{2}\\)", "\\(\\frac{3}{2}\\)", "\\(\\frac{3}{\\sqrt{5}}\\)", "\\(\\frac{\\sqrt{5}}{3}\\)"], answer: [ 5, 0, 2] },
+  { id: 345, choice: ["\\(\\frac{3}{5}\\)", "\\(\\frac{3}{4}\\)", "\\(\\frac{4}{3}\\)", "\\(\\frac{4}{5}\\)", "\\(\\frac{5}{4}\\)", "\\(\\frac{5}{3}\\)"], answer: [ 0, 3, 1] },
+  { id: 354, choice: ["\\(\\frac{3}{5}\\)", "\\(\\frac{3}{4}\\)", "\\(\\frac{4}{3}\\)", "\\(\\frac{4}{5}\\)", "\\(\\frac{5}{4}\\)", "\\(\\frac{5}{3}\\)"], answer: [ 3, 0, 2] },
+  { id: 51213, choice: ["\\(\\frac{5}{13}\\)", "\\(\\frac{5}{12}\\)", "\\(\\frac{12}{5}\\)", "\\(\\frac{12}{13}\\)", "\\(\\frac{13}{12}\\)", "\\(\\frac{13}{5}\\)"], answer: [ 0, 3, 1] },
+  { id: 51312, choice: ["\\(\\frac{5}{13}\\)", "\\(\\frac{5}{12}\\)", "\\(\\frac{12}{5}\\)", "\\(\\frac{12}{13}\\)", "\\(\\frac{13}{12}\\)", "\\(\\frac{13}{5}\\)"], answer: [ 3, 0, 2] }
 ];
 
 
@@ -79,7 +79,27 @@ const TrigonometricRationsApp = (props) => {
   // 問題の挙動を作る
   function displayQuestion() {
     handleQuestionTexts();
+    if (questionText === questionTexts[2]) {
     setQuestion(getNextQuestion(usedQuestions));
+    props.scoreChange(); //スコアを+1する関数。GameSettingからpropsで受け取る
+    };
+  }
+
+  //正誤判定する関数
+  function judgeAnswer(answer) {
+    const currentAnswerIndex = choice.answer[questionText.id];
+    const currentAnswer = choice.choice[currentAnswerIndex];
+    if (answer === currentAnswer) {
+      correctAnswer();
+    } else {
+      alert("不正解！");
+    }
+  };
+
+  //正解した時の処理
+  function correctAnswer() {
+    alert("正解！");
+    displayQuestion();
   }
 
 
@@ -94,10 +114,9 @@ return (
       <img src={questionImg}  />
       <MathJax>
       {choice.choice.map((c, index) => (
-            <button key={index}>{c}</button>
+            <button key={index} onClick={ () => judgeAnswer(c) }>{c}</button>
       ))}
       </MathJax>
-      <button onClick={() => { displayQuestion() }}>次の問題</button>
     </div>
   </MathJaxContext>
 );

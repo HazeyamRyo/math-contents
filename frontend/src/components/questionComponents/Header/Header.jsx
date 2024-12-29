@@ -6,7 +6,7 @@ import { Timer } from './Timer'
 import "./Header.css"
 
 export const Header = (props) => {
-  
+  console.log(props)
   
   
     return (

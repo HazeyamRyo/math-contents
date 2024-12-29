@@ -19,7 +19,7 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
   const [isTimeAttackMode, setIsTimeAttackMode] = useState(false);
   const [countdown, setCountdown] = useState(null);
   const [timer, setTimer] = useState(0);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(1);
   const [isGameActive, setIsGameActive] = useState(false);
   const [hintVisible, setHintVisible] = useState({ normal: true, hard: false });
 
@@ -47,6 +47,11 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
     setTimer((Date.now() - startTimeRef.current) / 1000);
     timerRef.current = requestAnimationFrame(updateTimer);
   };
+
+  const handleScore = () => {
+    setScore(score + 1);
+  };
+
 
   const handleModeChange = (selectedMode) => {
     setMode(selectedMode);
@@ -136,7 +141,7 @@ const GameSettings = (props) => {   // goal,titleをpropsで受け取る
             timer={timer}
             isTimeAttackMode={isTimeAttackMode}
           />
-          <TrigonometricRationsApp difficulty = {difficulty}/>
+          <TrigonometricRationsApp difficulty = {difficulty} scoreChange={ handleScore }/>
           <button className="game-settings-button" onClick={resetGame}>リセット</button>
         </div>
       )}
