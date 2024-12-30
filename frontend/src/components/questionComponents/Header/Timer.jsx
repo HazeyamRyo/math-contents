@@ -6,7 +6,7 @@ export const Timer = ({isTimeAttackMode,timer}) => {
   return (
     <div className="timer">
         <div id="timerText">time</div>
-        <div id="timer">{timer.toFixed(1)}秒</div>
+        <div id="timer">{timer}秒</div>
     </div>
   )
 };

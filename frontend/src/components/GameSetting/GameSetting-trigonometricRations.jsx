@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { ModeSelector } from "./\ModeSelector";
+import React, { useState, useEffect } from "react";
+import { useStopwatch } from "react-timer-hook";
+import { ModeSelector } from "./ModeSelector";
 import { DifficultySelector } from "./DifficultySelector";
 import { NumberOfQuestionsInput } from "./NumberOfQuestionsInput";
 import { Countdown } from "./Countdown";
@@ -8,56 +9,50 @@ import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
 import { TrigonometricRationsApp } from "../TrigonometricRations/TrigonometricRationsApp";
 
-
-
-
-const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHasをpropsで受け取る
+const GameSettings = (props) => {
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
   const [numberOfQuestions, setNumberOfQuestions] = useState(9);
   const [isTimeAttackMode, setIsTimeAttackMode] = useState(false);
   const [countdown, setCountdown] = useState(null);
-  const [timer, setTimer] = useState(0);
   const [score, setScore] = useState(1);
   const [isGameActive, setIsGameActive] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
   const [penaltyTime, setPenaltyTime] = useState(0);
 
-  const timerRef = useRef(null);
-  const startTimeRef = useRef(null);
+  const {
+    seconds,
+    minutes,
+    start: startStopwatch,
+    pause: pauseStopwatch,
+    reset: resetStopwatch,
+  } = useStopwatch({ autoStart: false });
+
+  // ミリ秒を計算 (秒をベースに補正)
+  const calculateMilliseconds = () => {
+    const now = new Date().getTime();
+    const elapsedTime = now % 1000; // 現在のミリ秒部分を計算
+    return elapsedTime;
+  };
 
   useEffect(() => {
     if (countdown > 0) {
-      const interval = setInterval(() => setCountdown(countdown - 1), 1000);
+      const interval = setInterval(() => setCountdown((prev) => prev - 1), 1000);
       return () => clearInterval(interval);
     } else if (countdown === 0 && isTimeAttackMode) {
       startGame();
     }
   }, [countdown, isTimeAttackMode]);
 
-  useEffect(() => {
-    if (isGameActive && isTimeAttackMode) {
-      startTimeRef.current = Date.now();
-      timerRef.current = requestAnimationFrame(updateTimer);
-    }
-    return () => cancelAnimationFrame(timerRef.current);
-  }, [isGameActive, isTimeAttackMode]);
-
-  const updateTimer = () => {
-    setTimer((Date.now() - startTimeRef.current) / 1000);
-    timerRef.current = requestAnimationFrame(updateTimer);
-  };
-
   const handleScore = () => {
     setScore(score + 1);
   };
-
 
   const handleModeChange = (selectedMode) => {
     setMode(selectedMode);
     setIsTimeAttackMode(selectedMode === "timeattack");
     if (selectedMode === "timeattack") {
-      setNumberOfQuestions(props.timeAttackModeHas); // Time Attack mode has 10 questions
+      setNumberOfQuestions(props.timeAttackModeHas);
     }
   };
 
@@ -81,102 +76,124 @@ const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHas
   const startGame = () => {
     setIsGameActive(true);
     if (isTimeAttackMode) {
-      setTimer(0);
-    } ;
+      resetStopwatch();
+      startStopwatch();
+    }
   };
 
   const resetGame = () => {
     if (isTimeAttackMode) {
-      clearInterval(timerRef.current);
-      const resultTimer = timer + penaltyTime;
-      alert(`タイムアタックモード終了！経過時間: ${resultTimer.toFixed(1)}秒`);
+      pauseStopwatch();
+      const resultTimer = (minutes || 0) * 60 + (seconds || 0) + calculateMilliseconds()/1000+ (penaltyTime || 0);
+      alert(`タイムアタックモード終了！経過時間: ${resultTimer}秒`);
     }
     setIsGameActive(false);
-    setTimer(0);
     setCountdown(null);
     setScore(0);
     setHintVisible(false);
     setPenaltyTime(0);
     alert("ゲームを終了します");
-    // Reset other game states if needed
   };
 
-  const stopGame = () => { 
+  const stopGame = () => {
     setIsGameActive(false);
-    setTimer(0);
     setCountdown(null);
     setScore(0);
     setHintVisible(false);
     setPenaltyTime(0);
     alert("ゲームを終了します");
-    // Reset other game states if needed
-  }
-
+  };
 
   return (
     <div className="game-settings">
       {!isGameActive && (
-      <>
-        <h2 className='Title'>{props.title}</h2>
-        <div className="setting">
-          <h2 className="setting-h2">設定</h2> 
-          <ModeSelector 
-            mode={mode} 
-            onModeChange={handleModeChange} 
-            props={{normalMode : "通常モード",
-                    timeAttackMode : "タイムアタックモード" } }
-          />
-          {mode === "normal" && (
-            <NumberOfQuestionsInput
-              numberOfQuestions={numberOfQuestions}
-              setNumberOfQuestions={setNumberOfQuestions}
-              maxQuestions={props.maxQuestions}
-              timeAttackMode={isTimeAttackMode}
+        <>
+          <h2 className="Title">{props.title}</h2>
+          <div className="setting">
+            <h2 className="setting-h2">設定</h2>
+            <ModeSelector
+              mode={mode}
+              onModeChange={handleModeChange}
+              props={{
+                normalMode: "通常モード",
+                timeAttackMode: "タイムアタックモード",
+              }}
             />
-          )}
-          {mode === "timeattack" && <div id="timeAttackInfo">{`タイムアタックモードの問題数は${props.timeAttackModeHas}問です！`}</div>}
-          
-          <DifficultySelector
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
-            props={{ normalDifficulty: "normal", hardDifficulty: "hard" }}
-          />
-          <div className="button-logo">
-            <button id="startButton" className="game-settings-button" onClick={handleStart}>
-              開始
-            </button>
-            <Logo />
+            {mode === "normal" && (
+              <NumberOfQuestionsInput
+                numberOfQuestions={numberOfQuestions}
+                setNumberOfQuestions={setNumberOfQuestions}
+                maxQuestions={props.maxQuestions}
+                timeAttackMode={isTimeAttackMode}
+              />
+            )}
+            {mode === "timeattack" && (
+              <div id="timeAttackInfo">
+                {`タイムアタックモードの問題数は${props.timeAttackModeHas}問です！`}
+              </div>
+            )}
+            <DifficultySelector
+              difficulty={difficulty}
+              onDifficultyChange={handleDifficultyChange}
+              props={{ normalDifficulty: "normal", hardDifficulty: "hard" }}
+            />
+            <div className="button-logo">
+              <button
+                id="startButton"
+                className="game-settings-button"
+                onClick={handleStart}
+              >
+                開始
+              </button>
+              <Logo />
+            </div>
           </div>
-        </div>
-      </>
+        </>
       )}
       {isGameActive && (
         <div className="game-active-container">
-          <Header 
+          <Header
             score={score}
             difficulty={difficulty}
             goal={props.goal}
-            timer={timer}
+            timer={`${minutes}:${seconds}`}
             isTimeAttackMode={isTimeAttackMode}
           />
           <div className="game-info">
-            <TrigonometricRationsApp  // ここにゲームのコンポーネントを入れる
-              difficulty = {difficulty} 
-              scoreChange={ handleScore } 
-              endGame = {resetGame}
-              numberOfQuestions = {numberOfQuestions}
+            <TrigonometricRationsApp
+              difficulty={difficulty}
+              scoreChange={handleScore}
+              endGame={resetGame}
+              numberOfQuestions={numberOfQuestions}
               isTimeAttackMode={isTimeAttackMode}
               setPenaltyTime={setPenaltyTime}
               penaltyTime={penaltyTime}
             />
-            <div className='hint-container'>
-              {!hintVisible && <button className='hint-button' onClick={() => setHintVisible(!hintVisible)}>ヒントを表示</button>}
-              {hintVisible && <button className='hint-button' onClick={() => setHintVisible(!hintVisible)}>ヒントを非表示</button>}
-              {hintVisible &&<img className='hint-img' src={props.hintImg} />}
-              
+            <div className="hint-container">
+              {!hintVisible && (
+                <button
+                  className="hint-button"
+                  onClick={() => setHintVisible(!hintVisible)}
+                >
+                  ヒントを表示
+                </button>
+              )}
+              {hintVisible && (
+                <button
+                  className="hint-button"
+                  onClick={() => setHintVisible(!hintVisible)}
+                >
+                  ヒントを非表示
+                </button>
+              )}
+              {hintVisible && (
+                <img className="hint-img" src={props.hintImg} alt="ヒント" />
+              )}
             </div>
           </div>
-          <button className="game-settings-button" onClick={stopGame}>問題をやめる</button>
+          <button className="game-settings-button" onClick={stopGame}>
+            問題をやめる
+          </button>
         </div>
       )}
       {countdown > 0 && <Countdown countdown={countdown} />}
