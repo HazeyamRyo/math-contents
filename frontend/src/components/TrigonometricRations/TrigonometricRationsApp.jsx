@@ -1,5 +1,6 @@
 import React, { useState ,useEffect } from 'react'
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
+import { IsCorrect } from '../GameSetting/IsCorrect';
 
 
 
@@ -43,6 +44,8 @@ const TrigonometricRationsApp = (props) => {
   const [question,setQuestion] = useState(getNextQuestion());
   const [questionImg,setQuestionImg] = useState(difficulty === "normal" ? question.normalImg : question.hardImg[Math.floor(Math.random() * 3)]);
   const [choice,setChoice] = useState(choices.find(choice => choice.id === question.id));
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   
   
   
@@ -105,13 +108,15 @@ const TrigonometricRationsApp = (props) => {
 
   //正解した時の処理
   function correctAnswer() {
-    alert("正解！");
-    displayQuestion();
+    setIsCorrect(true);
+    setTimeout(() => {
+      displayQuestion();
+    }, 2000); // 2秒後に次の問題を表示
   }
 
   //不正解だった時の処理
   function wrongAnswer() {
-    alert("不正解！");
+    setIsWrong(true);
     props.setHintVisible(true); //ヒントを表示する関数。GameSettingからpropsで受け取る
   }
 
@@ -120,6 +125,7 @@ const TrigonometricRationsApp = (props) => {
 return (
   <MathJaxContext>
     <div>
+      <IsCorrect isCorrect={isCorrect} setIsCorrect={setIsCorrect} iswrong={isWrong} setIswrong={setIsWrong}/>
       <MathJax>
         <div>{questionText.text}</div>
         {props.hintVisible && <div className="hint">ヒント: {questionText.hint}</div>}
