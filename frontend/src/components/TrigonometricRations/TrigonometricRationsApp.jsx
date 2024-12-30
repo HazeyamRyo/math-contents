@@ -1,6 +1,7 @@
 import React, { useState ,useEffect } from 'react'
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
+import "./App.css";
 
 
 
@@ -46,6 +47,9 @@ const TrigonometricRationsApp = (props) => {
   const [choice,setChoice] = useState(choices.find(choice => choice.id === question.id));
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [hintVisible, setHintVisible] = useState(false);
+  
   
   
   
@@ -83,7 +87,7 @@ const TrigonometricRationsApp = (props) => {
   // 問題の挙動を作る
   function displayQuestion() {
     handleQuestionTexts();
-    props.setHintVisible(false); //ヒントを非表示にする関数。GameSettingからpropsで受け取る
+    setHintVisible(false); //ヒントを非表示にする関数。GameSettingからpropsで受け取る
     if (questionText === questionTexts[2]) {
       if (usedQuestions.length >= props.numberOfQuestions) {
         props.endGame(); // ゲームを終了する関数。GameSettingからpropsで受け取る
@@ -97,6 +101,8 @@ const TrigonometricRationsApp = (props) => {
 
   //正誤判定する関数
   function judgeAnswer(answer) {
+    if (isButtonDisabled) return; // ボタンが無効化されている場合は何もしない
+    setIsButtonDisabled(true); // ボタンを無効化
     const currentAnswerIndex = choice.answer[questionText.id];
     const currentAnswer = choice.choice[currentAnswerIndex];
     if (answer === currentAnswer) {
@@ -111,30 +117,49 @@ const TrigonometricRationsApp = (props) => {
     setIsCorrect(true);
     setTimeout(() => {
       displayQuestion();
+      setIsButtonDisabled(false); // ボタンを再度有効化
     }, 2000); // 2秒後に次の問題を表示
   }
 
   //不正解だった時の処理
   function wrongAnswer() {
     setIsWrong(true);
-    props.setHintVisible(true); //ヒントを表示する関数。GameSettingからpropsで受け取る
+    props.setPenaltyTime(props.penaltyTime+5); // ペナルティタイムを5秒追加する関数。GameSettingからpropsで受け取る
+    setHintVisible(true); //ヒントを表示する関数。GameSettingからpropsで受け取る
+    setTimeout(() => {
+      setIsButtonDisabled(false); // ボタンを再度有効化
+    }, 2000); // 2秒後にボタンを再度有効化
   }
 
+  
 
 
 return (
   <MathJaxContext>
-    <div>
-      <IsCorrect isCorrect={isCorrect} setIsCorrect={setIsCorrect} iswrong={isWrong} setIswrong={setIsWrong}/>
+    <div className='question-container'>
+      <IsCorrect 
+        isCorrect={isCorrect} 
+        setIsCorrect={setIsCorrect} 
+        iswrong={isWrong} 
+        setIswrong={setIsWrong}
+        isTimeAttackMode={props.isTimeAttackMode}
+      />
       <MathJax>
-        <div>{questionText.text}</div>
-        {props.hintVisible && <div className="hint">ヒント: {questionText.hint}</div>}
+        <div className='question-text'>{questionText.text}</div>
+        {hintVisible && <div className="hint">ヒント: {questionText.hint}</div>}
       </MathJax>
-      <img src={questionImg}  />
+      <img className='question-img' src={questionImg}  />
       <MathJax>
-      {choice.choice.map((c, index) => (
-            <button key={index} onClick={ () => judgeAnswer(c) }>{c}</button>
-      ))}
+        <div className='question-choices'>
+        {choice.choice.map((c, index) => (
+              <button 
+                className='question-button' 
+                key={index} 
+                onClick={ () => judgeAnswer(c) }
+                disabled={isButtonDisabled} // disabled属性を追加
+                >{c}</button>
+        ))}
+        </div>
       </MathJax>
     </div>
   </MathJaxContext>

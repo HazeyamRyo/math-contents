@@ -53,7 +53,7 @@
     cursor: pointer;
   }
   
-  .game-settings button:hover {
+  .game-settings-button:hover {
     background-color: #0056b3;
   }
   
@@ -73,6 +73,52 @@
     margin-left: 50%;
     width: 80%;
   }
+
+  .game-info {
+    display: flex;
+    flex-direction: space-between;
+    align-items: start;
+    background-color: #fff;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .hint-container {
+    background-color: #fff;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hint-button {
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #1bfc07;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+  .hint-button:hover {
+    background-color: #46f8e9;
+  }
+
+  .hint-img{
+    width: 60%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   
 /* アニメーション */
 @keyframes fadeIn {

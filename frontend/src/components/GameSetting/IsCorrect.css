@@ -1,0 +1,46 @@
+.is-correct, .is-wrong {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .notification, .notification2 {
+    padding: 15px 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInOut 2s ease-in-out;
+  }
+  
+  .notification {
+    background-color: #28a745; /* 緑色 */
+  }
+  
+  .notification2 {
+    background-color: #dc3545; /* 赤色 */
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }

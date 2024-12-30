@@ -3,7 +3,6 @@ import { ModeSelector } from "./\ModeSelector";
 import { DifficultySelector } from "./DifficultySelector";
 import { NumberOfQuestionsInput } from "./NumberOfQuestionsInput";
 import { Countdown } from "./Countdown";
-import { GameInfo } from "./GameInfo";
 import { Logo } from "./Logo";
 import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
@@ -22,6 +21,7 @@ const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHas
   const [score, setScore] = useState(1);
   const [isGameActive, setIsGameActive] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
+  const [penaltyTime, setPenaltyTime] = useState(0);
 
   const timerRef = useRef(null);
   const startTimeRef = useRef(null);
@@ -88,16 +88,30 @@ const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHas
   const resetGame = () => {
     if (isTimeAttackMode) {
       clearInterval(timerRef.current);
-      alert(`タイムアタックモード終了！経過時間: ${timer.toFixed(1)}秒`);
+      const resultTimer = timer + penaltyTime;
+      alert(`タイムアタックモード終了！経過時間: ${resultTimer.toFixed(1)}秒`);
     }
     setIsGameActive(false);
     setTimer(0);
     setCountdown(null);
     setScore(0);
     setHintVisible(false);
+    setPenaltyTime(0);
     alert("ゲームを終了します");
     // Reset other game states if needed
   };
+
+  const stopGame = () => { 
+    setIsGameActive(false);
+    setTimer(0);
+    setCountdown(null);
+    setScore(0);
+    setHintVisible(false);
+    setPenaltyTime(0);
+    alert("ゲームを終了します");
+    // Reset other game states if needed
+  }
+
 
   return (
     <div className="game-settings">
@@ -145,15 +159,24 @@ const GameSettings = (props) => {   // goal,title,maxQuestions,timeAttackModeHas
             timer={timer}
             isTimeAttackMode={isTimeAttackMode}
           />
-          <TrigonometricRationsApp 
-            difficulty = {difficulty} 
-            scoreChange={ handleScore } 
-            hintVisible = {hintVisible}
-            setHintVisible = {setHintVisible}
-            endGame = {resetGame}
-            numberOfQuestions = {numberOfQuestions}
-          />
-          <button className="game-settings-button" onClick={resetGame}>リセット</button>
+          <div className="game-info">
+            <TrigonometricRationsApp  // ここにゲームのコンポーネントを入れる
+              difficulty = {difficulty} 
+              scoreChange={ handleScore } 
+              endGame = {resetGame}
+              numberOfQuestions = {numberOfQuestions}
+              isTimeAttackMode={isTimeAttackMode}
+              setPenaltyTime={setPenaltyTime}
+              penaltyTime={penaltyTime}
+            />
+            <div className='hint-container'>
+              {!hintVisible && <button className='hint-button' onClick={() => setHintVisible(!hintVisible)}>ヒントを表示</button>}
+              {hintVisible && <button className='hint-button' onClick={() => setHintVisible(!hintVisible)}>ヒントを非表示</button>}
+              {hintVisible &&<img className='hint-img' src={props.hintImg} />}
+              
+            </div>
+          </div>
+          <button className="game-settings-button" onClick={stopGame}>問題をやめる</button>
         </div>
       )}
       {countdown > 0 && <Countdown countdown={countdown} />}
