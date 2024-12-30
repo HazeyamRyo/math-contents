@@ -8,6 +8,7 @@ import { Logo } from "./Logo";
 import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
 import { TrigonometricRationsApp } from "../TrigonometricRations/TrigonometricRationsApp";
+import { Result } from "./Result";
 
 const GameSettings = (props) => {
   const [mode, setMode] = useState("normal");
@@ -19,6 +20,9 @@ const GameSettings = (props) => {
   const [isGameActive, setIsGameActive] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
   const [penaltyTime, setPenaltyTime] = useState(0);
+  const [resultTimer, setResultTimer] = useState(0);
+  const [resultDisplay, setResultDisplay] = useState(false);
+
 
   const {
     seconds,
@@ -81,18 +85,13 @@ const GameSettings = (props) => {
     }
   };
 
-  const resetGame = () => {
+  const resultGame = () => {
     if (isTimeAttackMode) {
       pauseStopwatch();
-      const resultTimer = (minutes || 0) * 60 + (seconds || 0) + calculateMilliseconds()/1000+ (penaltyTime || 0);
-      alert(`タイムアタックモード終了！経過時間: ${resultTimer}秒`);
+      const calculatedTime = (minutes || 0) * 60 + (seconds || 0) + calculateMilliseconds() / 1000 + (penaltyTime || 0);
+      setResultTimer(calculatedTime);
+      setResultDisplay(true);
     }
-    setIsGameActive(false);
-    setCountdown(null);
-    setScore(0);
-    setHintVisible(false);
-    setPenaltyTime(0);
-    alert("ゲームを終了します");
   };
 
   const stopGame = () => {
@@ -101,6 +100,8 @@ const GameSettings = (props) => {
     setScore(0);
     setHintVisible(false);
     setPenaltyTime(0);
+    setResultTimer(0);
+    setResultDisplay(false);
     alert("ゲームを終了します");
   };
 
@@ -163,7 +164,7 @@ const GameSettings = (props) => {
             <TrigonometricRationsApp
               difficulty={difficulty}
               scoreChange={handleScore}
-              endGame={resetGame}
+              endGame={resultGame}
               numberOfQuestions={numberOfQuestions}
               isTimeAttackMode={isTimeAttackMode}
               setPenaltyTime={setPenaltyTime}
@@ -194,6 +195,7 @@ const GameSettings = (props) => {
           <button className="game-settings-button" onClick={stopGame}>
             問題をやめる
           </button>
+          {isTimeAttackMode && resultDisplay && (<Result resultTimer={resultTimer} penaltyTime={penaltyTime} stopGame={stopGame}/>)}
         </div>
       )}
       {countdown > 0 && <Countdown countdown={countdown} />}
