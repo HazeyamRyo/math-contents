@@ -136,7 +136,7 @@ const GameSettings = (props) => {
             <DifficultySelector
               difficulty={difficulty}
               onDifficultyChange={handleDifficultyChange}
-              props={{ normalDifficulty: "normal", hardDifficulty: "hard" }}
+              props={{ normalDifficulty: "30°,45°,60°の三角比", hardDifficulty: "すべての角の三角比" }}
             />
             <div className="button-logo">
               <button
@@ -164,11 +164,13 @@ const GameSettings = (props) => {
             <TrigonometricRationsApp2
               difficulty={difficulty}
               scoreChange={handleScore}
+              score={score}
               endGame={resultGame}
               numberOfQuestions={numberOfQuestions}
               isTimeAttackMode={isTimeAttackMode}
               setPenaltyTime={setPenaltyTime}
               penaltyTime={penaltyTime}
+              stopGame={stopGame}
             />
             <div className="hint-container">
               {!hintVisible && (

@@ -90,7 +90,11 @@ const TrigonometricRationsApp = (props) => {
     setHintVisible(false); //ヒントを非表示にする関数。GameSettingからpropsで受け取る
     if (questionText === questionTexts[2]) {
       if (usedQuestions.length >= props.numberOfQuestions) {
-        props.endGame(); // ゲームを終了する関数。GameSettingからpropsで受け取る
+        if (props.isTimeAttackMode) {
+          props.endGame(); // リザルト画面を表示関数。GameSettingからpropsで受け取る
+          } else {
+          props.stopGame(); // ゲームを終了する関数。GameSettingからpropsで受け取る
+        }
       } else {
         setQuestion(getNextQuestion(usedQuestions));
         props.scoreChange(); //スコアを+1する関数。GameSettingからpropsで受け取る

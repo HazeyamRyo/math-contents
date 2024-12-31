@@ -165,6 +165,7 @@ const GameSettings = (props) => {
               difficulty={difficulty}
               scoreChange={handleScore}
               endGame={resultGame}
+              stopGame={stopGame}
               numberOfQuestions={numberOfQuestions}
               isTimeAttackMode={isTimeAttackMode}
               setPenaltyTime={setPenaltyTime}
