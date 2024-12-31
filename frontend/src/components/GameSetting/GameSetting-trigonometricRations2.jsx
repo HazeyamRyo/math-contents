@@ -7,7 +7,7 @@ import { Countdown } from "./Countdown";
 import { Logo } from "./Logo";
 import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
-import { TrigonometricRationsApp } from "../AppComponents/TrigonometricRationsApp";
+import { TrigonometricRationsApp2 } from "../AppComponents/TrigonometricRationsApp2";
 import { Result } from "./Result";
 
 const GameSettings = (props) => {
@@ -161,7 +161,7 @@ const GameSettings = (props) => {
             isTimeAttackMode={isTimeAttackMode}
           />
           <div className="game-info">
-            <TrigonometricRationsApp
+            <TrigonometricRationsApp2
               difficulty={difficulty}
               scoreChange={handleScore}
               endGame={resultGame}
