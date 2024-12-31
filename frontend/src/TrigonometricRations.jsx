@@ -13,7 +13,7 @@ function TrigonometricRations() {
       title = {"三角比を辺の長さから求めよう"} 
       goal = {"三角比を辺の長さから求めることができる。"}
       maxQuestions = {9}
-      timeAttackModeHas = {1}
+      timeAttackModeHas = {5}
       hintImg = {"../../../public/question-img/ヒント/fft23.jpg"}
       />
       <HomeButton />
