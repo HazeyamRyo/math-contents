@@ -107,7 +107,7 @@ const GameSettings = (props) => {
 
   return (
     <div className="game-settings">
-      {!isGameActive && (
+      {(!isGameActive && !resultDisplay  ) && (
         <>
           <h2 className="Title">{props.title}</h2>
           <div className="setting">
@@ -151,7 +151,7 @@ const GameSettings = (props) => {
           </div>
         </>
       )}
-      {isGameActive && (
+      {(isGameActive && !resultDisplay  ) && (
         <div className="game-active-container">
           <Header
             score={score}
@@ -195,10 +195,11 @@ const GameSettings = (props) => {
           <button className="game-settings-button" onClick={stopGame}>
             問題をやめる
           </button>
-          {isTimeAttackMode && resultDisplay && (<Result resultTimer={resultTimer} penaltyTime={penaltyTime} stopGame={stopGame}/>)}
+          
         </div>
       )}
       {countdown > 0 && <Countdown countdown={countdown} />}
+      {isTimeAttackMode && resultDisplay && (<Result resultTimer={resultTimer} penaltyTime={penaltyTime} stopGame={stopGame}/>)}
     </div>
   );
 };
