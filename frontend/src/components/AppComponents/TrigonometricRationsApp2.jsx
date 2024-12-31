@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
 import "./App.css";
+import { use } from 'react';
 
 //難易度normalの問題
 const normalQuestionsContaner = [{
@@ -106,6 +107,7 @@ function checkMatch(event) {
         checkButton.disabled = true;
     } else {
         res.innerText = "";
+        checkButton.disabled = false
     }
 }
 
@@ -118,6 +120,7 @@ export const TrigonometricRationsApp2 = (props) => {
     const [isCorrect, setIsCorrect] = useState(false);
     const [isWrong, setIsWrong] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [userAnswer, setUserAnswer] = useState("");
 
     // コンポーネントがマウントされたときに最初の問題を設定する
     useEffect(() => {
@@ -168,7 +171,7 @@ export const TrigonometricRationsApp2 = (props) => {
     function judgeAnswer(answer) {
         if (isButtonDisabled) return; // ボタンが無効化されている場合は何もしない
         setIsButtonDisabled(true); // ボタンを無効化
-        if (answer === currentAnswer) {
+        if (answer === currentAnswer || answer === currentAnswer) {
             correctAnswer();
         } else {
             wrongAnswer();
@@ -181,6 +184,7 @@ export const TrigonometricRationsApp2 = (props) => {
         setTimeout(() => {
         displayQuestion();
         setIsButtonDisabled(false); // ボタンを再度有効化
+        setUserAnswer(""); // ユーザーの解答をリセット
         }, 2000); // 2秒後に次の問題を表示
     }
 
@@ -188,9 +192,9 @@ export const TrigonometricRationsApp2 = (props) => {
     function wrongAnswer() {
         setIsWrong(true);
         props.setPenaltyTime(props.penaltyTime+5); // ペナルティタイムを5秒追加する関数。GameSettingからpropsで受け取る
-        setHintVisible(true); //ヒントを表示する関数。GameSettingからpropsで受け取る
         setTimeout(() => {
         setIsButtonDisabled(false); // ボタンを再度有効化
+        setUserAnswer(""); // ユーザーの解答をリセット
         }, 2000); // 2秒後にボタンを再度有効化
     }
 
@@ -224,9 +228,18 @@ export const TrigonometricRationsApp2 = (props) => {
                     )}
                     {difficulty === "hard" && (
                         <div className="answer">
-                            <input type="text" id="userAnswer" placeholder="半角数字で答えてください"></input>
-                            <button id="checkButton">解答</button>
-                            <p><span id="res"></span></p>
+                            <input 
+                            type="text"
+                            className="user-answer" 
+                            placeholder="半角数字で答えてください"
+                            value={userAnswer}
+                            onChange={(e) => {
+                                setUserAnswer(e.target.value);
+                                checkMatch(e.target);
+                            }}
+                            ></input>
+                            <button className='question-button' onClick={() => judgeAnswer(userAnswer)} disabled={isButtonDisabled} id="checkButton">答え合わせ</button>
+                            <div id="res"></div>
                         </div>
                     )}
                 </MathJax>

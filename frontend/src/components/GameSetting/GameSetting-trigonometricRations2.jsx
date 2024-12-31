@@ -173,7 +173,7 @@ const GameSettings = (props) => {
               stopGame={stopGame}
             />
             <div className="hint-container">
-              {!hintVisible && (
+              {difficulty === "normal" && !hintVisible &&(
                 <button
                   className="hint-button"
                   onClick={() => setHintVisible(!hintVisible)}
@@ -181,7 +181,7 @@ const GameSettings = (props) => {
                   ヒントを表示
                 </button>
               )}
-              {hintVisible && (
+              {difficulty === "normal" && hintVisible && (
                 <button
                   className="hint-button"
                   onClick={() => setHintVisible(!hintVisible)}
@@ -189,8 +189,12 @@ const GameSettings = (props) => {
                   ヒントを非表示
                 </button>
               )}
-              {hintVisible && (
+              {difficulty === "normal" && hintVisible && (
                 <img className="hint-img" src={props.hintImg} alt="ヒント" />
+                
+              )}
+              {difficulty === "hard" && (
+                <img className="hint-img-big" src="../../../public/question-img/ヒント/三角比の表.webp" alt="ヒント" />
               )}
             </div>
           </div>

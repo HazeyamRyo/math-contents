@@ -8,13 +8,12 @@ function TrigonometricRationsPart2() {
   return (
     <>
       <ButtonAppBar />
-      <h2 className='Title'>三角比の値を角度から求めよう</h2>
       <GameSettings
       title = {"三角比の値を角度から求めよう"} 
       goal = {"三角比を角度から求めることができる。"}
       maxQuestions = {9}
       timeAttackModeHas = {1}
-      hintImg = {"../../../public/question-img/ヒント/fft23.jpg"}/>
+      hintImg = {"../../../public/question-img/ヒント/triangle4.png"}/>
       <HomeButton />
     </>
   )
