@@ -194,7 +194,7 @@ const GameSettings = (props) => {
                 
               )}
               {difficulty === "hard" && (
-                <img className="hint-img-big" src="../../../public/question-img/ヒント/三角比の表.webp" alt="ヒント" />
+                <img className="hint-img-big" src={import.meta.env.BASE_URL + "/question-img/ヒント/三角比の表.webp"} alt="ヒント" />
               )}
             </div>
           </div>
