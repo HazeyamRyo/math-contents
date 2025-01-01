@@ -12,7 +12,7 @@ function TrigonometricRationsPart2() {
       title = {"三角比の値を角度から求めよう"} 
       goal = {"三角比を角度から求めることができる。"}
       maxQuestions = {9}
-      timeAttackModeHas = {5}
+      timeAttackModeHas = {1}
       hintImg = {"../../../public/question-img/ヒント/triangle4.png"}/>
       <HomeButton />
     </>

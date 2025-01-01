@@ -4,6 +4,7 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
 import "./App.css";
 
+
 // 問題文とヒントのテキスト
 const questionTexts = [
     { text: "次の三角形の斜辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 1 },
@@ -13,15 +14,15 @@ const questionTexts = [
 
 // 問題のデータ
 const questions = [
-    { normalImg: "../../../public/question-img/normal/normal 1-1-√2.svg", hardImg: ["../../../public/question-img/hard/hard 1-1-√2 90.svg", "../../../public/question-img/hard/hard 1-1-√2 180.svg", "../../../public/question-img/hard/hard 1-1-√2 270.svg"], id: 112 },
-    { normalImg: "../../../public/question-img/normal/normal 1-√3-2.svg", hardImg: ["../../../public/question-img/hard/hard 1-√3-2 90.svg", "../../../public/question-img/hard/hard 1-√3-2 180.svg", "../../../public/question-img/hard/hard 1-√3-2 270.svg"], id: 132 },
-    { normalImg: "../../../public/question-img/normal/normal 1-2-√3.svg", hardImg: ["../../../public/question-img/hard/hard 1-2-√3 90.svg", "../../../public/question-img/hard/hard 1-2-√3 180.svg", "../../../public/question-img/hard/hard 1-2-√3 270.svg"], id: 123 },
-    { normalImg: "../../../public/question-img/normal/normal 2-√5-3.svg", hardImg: ["../../../public/question-img/hard/hard 2-√5-3 90.svg", "../../../public/question-img/hard/hard 2-√5-3 180.svg", "../../../public/question-img/hard/hard 2-√5-3 270.svg"], id: 253 },
-    { normalImg: "../../../public/question-img/normal/normal 2-3-√5.svg", hardImg: ["../../../public/question-img/hard/hard 2-3-√5 90.svg", "../../../public/question-img/hard/hard 2-3-√5 180.svg", "../../../public/question-img/hard/hard 2-3-√5 270.svg"], id: 235 },
-    { normalImg: "../../../public/question-img/normal/normal 3-4-5.svg", hardImg: ["../../../public/question-img/hard/hard 3-4-5 90.svg", "../../../public/question-img/hard/hard 3-4-5 180.svg", "../../../public/question-img/hard/hard 3-4-5 270.svg"], id: 345 },
-    { normalImg: "../../../public/question-img/normal/normal 3-5-4.svg", hardImg: ["../../../public/question-img/hard/hard 3-5-4 90.svg", "../../../public/question-img/hard/hard 3-5-4 180.svg", "../../../public/question-img/hard/hard 3-5-4 270.svg"], id: 354 },
-    { normalImg: "../../../public/question-img/normal/normal 5-12-13.svg", hardImg: ["../../../public/question-img/hard/hard 5-12-13 90.svg", "../../../public/question-img/hard/hard 5-12-13 180.svg", "../../../public/question-img/hard/hard 5-12-13 270.svg"], id: 51213 },
-    { normalImg: "../../../public/question-img/normal/normal 5-13-12.svg", hardImg: ["../../../public/question-img/hard/hard 5-13-12 90.svg", "../../../public/question-img/hard/hard 5-13-12 180.svg", "../../../public/question-img/hard/hard 5-13-12 270.svg"], id: 51312 }
+    { normalImg: import.meta.env.BASE_URL + "question-img/normal/normal 1-1-√2.svg", hardImg: ["/question-img/hard/hard 1-1-√2 90.svg", "/question-img/hard/hard 1-1-√2 180.svg", "/question-img/hard/hard 1-1-√2 270.svg"], id: 112 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 1-√3-2.svg", hardImg: ["/question-img/hard/hard 1-√3-2 90.svg", "/question-img/hard/hard 1-√3-2 180.svg", "/question-img/hard/hard 1-√3-2 270.svg"], id: 132 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 1-2-√3.svg", hardImg: ["/question-img/hard/hard 1-2-√3 90.svg", "/question-img/hard/hard 1-2-√3 180.svg", "/question-img/hard/hard 1-2-√3 270.svg"], id: 123 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 2-√5-3.svg", hardImg: ["/question-img/hard/hard 2-√5-3 90.svg", "/question-img/hard/hard 2-√5-3 180.svg", "/question-img/hard/hard 2-√5-3 270.svg"], id: 253 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 2-3-√5.svg", hardImg: ["/question-img/hard/hard 2-3-√5 90.svg", "/question-img/hard/hard 2-3-√5 180.svg", "/question-img/hard/hard 2-3-√5 270.svg"], id: 235 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 3-4-5.svg", hardImg: ["/question-img/hard/hard 3-4-5 90.svg", "/question-img/hard/hard 3-4-5 180.svg", "/question-img/hard/hard 3-4-5 270.svg"], id: 345 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 3-5-4.svg", hardImg: ["/question-img/hard/hard 3-5-4 90.svg", "/question-img/hard/hard 3-5-4 180.svg", "/question-img/hard/hard 3-5-4 270.svg"], id: 354 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 5-12-13.svg", hardImg: ["/question-img/hard/hard 5-12-13 90.svg", "/question-img/hard/hard 5-12-13 180.svg", "/question-img/hard/hard 5-12-13 270.svg"], id: 51213 },
+    { normalImg: import.meta.env.BASE_URL + "/question-img/normal/normal 5-13-12.svg", hardImg: ["/question-img/hard/hard 5-13-12 90.svg", "../../../public/question-img/hard/hard 5-13-12 180.svg", "../../../public/question-img/hard/hard 5-13-12 270.svg"], id: 51312 }
 ];
 
 // 選択肢のデータ

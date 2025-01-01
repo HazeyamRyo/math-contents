@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Result.css';
+import Trophy from '/Trophy.jpg';
 
 const Result = ({ resultTimer, penaltyTime, stopGame }) => {
     const [displayTime, setDisplayTime] = useState(0);
@@ -65,8 +66,7 @@ const Result = ({ resultTimer, penaltyTime, stopGame }) => {
                 <div className="result-details">
                     <img
                         className="result-image"
-                        src="../../../public/trophy.jpg"
-                        alt="Trophy"
+                        src={Trophy} 
                     />
                     <div className="result-text">
                         <p>Time: <span>{displayTime.toFixed(2)}</span> 秒</p>

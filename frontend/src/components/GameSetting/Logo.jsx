@@ -1,6 +1,6 @@
 import React from 'react';
 import './Logo.css';
-import logoImage from '../../../public/logo.webp'; // ロゴ画像のパスを指定
+import logoImage from '/logo.webp'; // ロゴ画像のパスを指定
 
 const Logo = () => {
   return (
