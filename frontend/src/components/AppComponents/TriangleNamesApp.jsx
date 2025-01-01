@@ -4,12 +4,11 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
 import "./App.css";
 
-
 // 問題文とヒントのテキスト
 const questionTexts = [
-    { text: "次の三角形の斜辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 0 },
-    { text: "次の三角形の隣辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 1 },
-    { text: "次の三角形の対辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 2 }
+    { text: "次の三角形の斜辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 1 },
+    { text: "次の三角形の隣辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 2},
+    { text: "次の三角形の対辺はどれでしょう。", hint: "右のヒントボタンを押してヒントを確認しよう", id: 3 }
 ];
 
 // 問題のデータ
@@ -27,15 +26,15 @@ const questions = [
 
 // 選択肢のデータ
 const choices = [
-    { id: 112, choice: ["AB","BC","AC"], answer: [ 0, 1, 2] },
-    { id: 132, choice: ["AB","BC","AC"], answer: [ 0, 1, 2] },
-    { id: 123, choice: ["AB","BC","AC"], answer: [ 0, 2, 1] },
-    { id: 253, choice: ["AB","BC","AC"], answer: [ 0, 1, 2] },
-    { id: 235, choice: ["AB","BC","AC"], answer: [ 0, 2, 1] },
-    { id: 345, choice: ["AB","BC","AC"], answer: [ 0, 1, 2] },
-    { id: 354, choice: ["AB","BC","AC"], answer: [ 0, 2, 1] },
-    { id: 51213, choice: ["AB","BC","AC"], answer: [ 0, 1, 2] },
-    { id: 51312, choice: ["AB","BC","AC"], answer: [ 0, 2, 1] }
+    { id: 112, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "BC", correctTaihen: "AC" },
+    { id: 132, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "BC", correctTaihen: "AC" },
+    { id: 123, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "AC", correctTaihen: "BC" },
+    { id: 253, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "BC", correctTaihen: "AC" },
+    { id: 235, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "AC", correctTaihen: "BC" },
+    { id: 345, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "BC", correctTaihen: "AC" },
+    { id: 354, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "AC", correctTaihen: "BC" },
+    { id: 51213, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "BC", correctTaihen: "AC" },
+    { id: 51312, choice: ["AB","BC","AC"], correctSyahen: "AB", correctRinpen: "AC", correctTaihen: "BC"}
 ];
 
 function TriangleNamesApp(props) {
@@ -45,7 +44,7 @@ function TriangleNamesApp(props) {
     const [usedQuestions, setUsedQuestions] = useState([]);
     const [question,setQuestion] = useState(getNextQuestion());
     const [questionImg,setQuestionImg] = useState(difficulty === "normal" ? question.normalImg : question.hardImg[Math.floor(Math.random() * 3)]);
-    const [choice,setChoice] = useState(choices.find(choice => choice.id === question.id));
+    const [choice,setChoice] = useState(shuffleChoices(choices.find(choice => choice.id === question.id)));
     const [isCorrect, setIsCorrect] = useState(false);
     const [isWrong, setIsWrong] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -77,18 +76,29 @@ function TriangleNamesApp(props) {
       // questionが更新されたときにquestionImgとchoiceを更新する
     useEffect(() => {
         setQuestionImg(difficulty === "normal" ? question.normalImg : question.hardImg[Math.floor(Math.random() * 3)]);
-        setChoice(choices.find(choice => choice.id === question.id));
+        setChoice(shuffleChoices(choices.find(choice => choice.id === question.id)));
         setUsedQuestions([...usedQuestions, question.id]);
     }, [question, difficulty]);
     
     // ボタンの配置をランダムにする
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
-    return array;
+
+    // 選択肢をシャッフルし、元のインデックスとIDを保持する
+function shuffleChoices(choice) {
+    const pairedChoices = choice.choice.map((c, index) => ({ choice: c, index, id: choice.id }));
+    const shuffledChoices = shuffleArray(pairedChoices);
+    return {
+        ...choice,
+        choice: shuffledChoices.map(c => c.choice),
+    };
 }
+
     
       // 問題の挙動を作る
     function displayQuestion() {
@@ -112,8 +122,15 @@ function shuffleArray(array) {
     function judgeAnswer(answer) {
         if (isButtonDisabled) return; // ボタンが無効化されている場合は何もしない
         setIsButtonDisabled(true); // ボタンを無効化
-        const currentAnswerIndex = choice.answer[questionText.id];
-        const currentAnswer = choice.choice[currentAnswerIndex];
+       // 正解のインデックスを取得;
+        let currentAnswer;
+        if (questionText.id === 1) {
+        currentAnswer = choice.correctSyahen;
+        } else if (questionText.id === 2) {
+        currentAnswer = choice.correctRinpen;
+        } else if (questionText.id === 3) {
+        currentAnswer = choice.correctTaihen;
+        }
         if (answer === currentAnswer) {
             correctAnswer();
         } else {

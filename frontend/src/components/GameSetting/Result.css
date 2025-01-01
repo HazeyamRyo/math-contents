@@ -52,7 +52,19 @@
   .result-text span {
     font-weight: bold;
     color: #e74c3c;
-  }
+    animation: countUp 1s ease-out;
+}
+
+@keyframes countUp {
+    from {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
   
   /* トロフィー画像 */
   .result-image {
