@@ -3,7 +3,7 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 50%;
+    width: 70%;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
@@ -13,5 +13,20 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
+}
+
+.big-contents{
+    width: 100%;
+    display: flex;    
+}
+
+.content1{
+    margin: 20px;
+    padding: 15px;
+}
+
+.content2{
+    margin: 20px;
+    padding: 15px;
 }
 
