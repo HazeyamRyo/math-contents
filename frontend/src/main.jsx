@@ -10,7 +10,7 @@ import { ApplicationOfTrigonometricRatios } from './ApplicationOfTrigonometricRa
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/math-contents">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/triangle-names" element={<TriangleNames />} />
