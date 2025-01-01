@@ -137,6 +137,11 @@ export const TrigonometricRationsApp2 = (props) => {
         }
     }, [question]);
 
+        // MathJaxの再レンダリングを強制する
+        useEffect(() => {
+            window.MathJax && window.MathJax.typeset();
+        }, [questionText, choices]);
+
     //問題の難易度を取得し問題を選択してセットする
     function getNextQuestion(d) {
         if (d === "normal") {

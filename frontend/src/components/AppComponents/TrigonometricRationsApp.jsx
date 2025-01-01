@@ -84,6 +84,11 @@ const TrigonometricRationsApp = (props) => {
     setUsedQuestions([...usedQuestions, question.id]);
   }, [question, difficulty]);
 
+      // MathJaxの再レンダリングを強制する
+      useEffect(() => {
+        window.MathJax && window.MathJax.typeset();
+    }, [questionText, questionImg, choice]);
+
 
   // 問題の挙動を作る
   function displayQuestion() {
