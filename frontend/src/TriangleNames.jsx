@@ -13,7 +13,7 @@ function TriangleNames() {
         goal = {"三角形の辺の名前を答えることができる"}
         maxQuestions = {9}
         timeAttackModeHas = {5}
-        hintImg = {"../../../public/question-img/ヒント/三角形辺の名前.gif"}
+        hintImg = {import.meta.env.BASE_URL + "/question-img/ヒント/三角形辺の名前.gif"}
       />
       <HomeButton />
     </div>

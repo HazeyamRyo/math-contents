@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
 import "./App.css";
-import { use } from 'react';
+
 
 //難易度normalの問題
 const normalQuestionsContaner = [{

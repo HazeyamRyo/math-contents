@@ -13,7 +13,7 @@ function TrigonometricRationsPart2() {
       goal = {"三角比を角度から求めることができる。"}
       maxQuestions = {9}
       timeAttackModeHas = {1}
-      hintImg = {"../../../public/question-img/ヒント/triangle4.png"}/>
+      hintImg = {import.meta.env.BASE_URL + "/question-img/ヒント/triangle4.png"}/>
       <HomeButton />
     </>
   )

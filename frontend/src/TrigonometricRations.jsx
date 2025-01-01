@@ -14,7 +14,7 @@ function TrigonometricRations() {
       goal = {"三角比を辺の長さから求めることができる。"}
       maxQuestions = {9}
       timeAttackModeHas = {5}
-      hintImg = {"../../../public/question-img/ヒント/fft23.jpg"}
+      hintImg = {import.meta.env.BASE_URL + "/question-img/ヒント/fft23.jpg"}
       />
       <HomeButton />
     
