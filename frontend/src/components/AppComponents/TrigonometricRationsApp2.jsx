@@ -140,6 +140,7 @@ export const TrigonometricRationsApp2 = (props) => {
         // MathJaxの再レンダリングを強制する
         useEffect(() => {
             window.MathJax && window.MathJax.typeset();
+            console.log("レンダリング");
         }, [questionText, choices]);
 
     //問題の難易度を取得し問題を選択してセットする
