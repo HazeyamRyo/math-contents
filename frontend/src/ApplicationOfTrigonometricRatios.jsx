@@ -9,11 +9,16 @@ function ApplicationOfTrigonometricRatios() {
     <>
       <ButtonAppBar />
       <GameSettings
-      title = {"三角比の値を角度から求めよう"} 
-      goal = {"三角比を角度から求めることができる。"}
-      maxQuestions = {9}
-      timeAttackModeHas = {5}
-      hintImg = {"../../../public/question-img/ヒント/triangle4.png"}/>
+      title = {"三角比の値を利用して角の大きさを求めよう"} 
+      goal = {"三角比の値から角度から求めることができる。"}
+      maxQuestions = {5}
+      timeAttackModeHas = {3}
+      hintImg = {import.meta.env.BASE_URL + "question-img/ヒント/三角形辺の名前.gif"}
+      hintImg2 = {import.meta.env.BASE_URL + "question-img/ヒント/fft23.jpg"}
+      hintImg3 = {import.meta.env.BASE_URL + "question-img/ヒント/triangle4.png"}
+      hintImg4 = {import.meta.env.BASE_URL + "question-img/ヒント/三角比の表.webp"}
+
+      />
       <HomeButton />
     </>
   )

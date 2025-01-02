@@ -24,7 +24,6 @@ const NumberOfQuestionsInput = ({ numberOfQuestions, setNumberOfQuestions , maxQ
         問題数:
         <input
           type="number"
-          value={numberOfQuestions}
           onChange={handleChange}
           min="1"
           max={maxQuestions}

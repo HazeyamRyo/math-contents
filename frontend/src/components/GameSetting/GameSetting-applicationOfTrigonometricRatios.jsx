@@ -7,7 +7,7 @@ import { Countdown } from "./Countdown";
 import { Logo } from "./Logo";
 import "./GameSetting.css";
 import { Header } from "../questionComponents/Header/Header";
-import { TrigonometricRationsApp2 } from "../AppComponents/TrigonometricRationsApp2";
+import { ApplicationOfTrigonometricRatiosApp } from "../AppComponents/ApplicationOfTrigonometricRatiosApp";
 import { Result } from "./Result";
 
 const GameSettings = (props) => {
@@ -136,7 +136,7 @@ const GameSettings = (props) => {
             <DifficultySelector
               difficulty={difficulty}
               onDifficultyChange={handleDifficultyChange}
-              props={{ normalDifficulty: "30°,45°,60°の三角比", hardDifficulty: "すべての角の三角比" }}
+              props={{ normalDifficulty: "normal(アシストつき)", hardDifficulty: "hard(アシストなし)" }}
             />
             <div className="button-logo">
               <button
@@ -161,7 +161,7 @@ const GameSettings = (props) => {
             isTimeAttackMode={isTimeAttackMode}
           />
           <div className="game-info">
-            <TrigonometricRationsApp2
+            <ApplicationOfTrigonometricRatiosApp
               difficulty={difficulty}
               scoreChange={handleScore}
               score={score}
@@ -173,28 +173,27 @@ const GameSettings = (props) => {
               stopGame={stopGame}
             />
             <div className="hint-container">
-              {difficulty === "normal" && !hintVisible &&(
+              {!hintVisible &&(
                 <button
                   className="hint-button"
                   onClick={() => setHintVisible(!hintVisible)}
                 >
-                  ヒントを表示
+                  これまでの学びを表示
                 </button>
               )}
-              {difficulty === "normal" && hintVisible && (
+              {hintVisible && (
                 <button
                   className="hint-button"
                   onClick={() => setHintVisible(!hintVisible)}
                 >
-                  ヒントを非表示
+                  これまでの学びを非表示
                 </button>
               )}
-              {difficulty === "normal" && hintVisible && (
-                <img className="hint-img" src={props.hintImg} alt="ヒント" />
-                
-              )}
-              {difficulty === "hard" && (
-                <img className="hint-img-big" src="../../../public/question-img/ヒント/三角比の表.webp" alt="ヒント" />
+              {hintVisible && (
+                <><img className="hint-img" src={props.hintImg} alt="ヒント" />
+                  <img className="hint-img" src={props.hintImg2} alt="ヒント" />
+                  <img className="hint-img" src={props.hintImg3} alt="ヒント" />
+                  <img className="hint-img" src={props.hintImg4} alt="ヒント" /></>               
               )}
             </div>
           </div>
