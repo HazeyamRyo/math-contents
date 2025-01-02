@@ -274,6 +274,10 @@ const choices2 = [
         }, 2000); // 2秒後にボタンを再度有効化
     }
 
+    const openNewWindow = (e) => {
+        e.preventDefault();
+        window.open('https://www.webdentaku.com/', '', 'width=400,height=600,scrollbars=yes');
+    };
 
 
 
@@ -341,7 +345,12 @@ return (
         {(currentStep === 3 && difficulty === "normal")  && <div className='step3'>
             <p className='step-text'>{step3}</p>
             {advise2 && <p>{question.hint2}</p>}
-            {!advise2 && <button className='hint-button' onClick={() => setAdvise2(true)} >ヒントを表示</button>}
+            <div className='hint-button-container'>
+                {!advise2 && <button className='hint-button' onClick={() => setAdvise2(true)} >ヒントを表示</button> }
+                <a href="https://www.webdentaku.com/" onClick={openNewWindow} className='web-calculator'>
+                    Web電卓を開く
+                </a>
+            </div>
         </div>}
     </MathJax>
     <MathJax>
@@ -357,8 +366,8 @@ return (
         }}
         />
         <span>度</span>
-        <button className='question-button' onClick={() => judgeAnswer3(userAnswer)} id="checkButton">答え合わせ</button>
         <div id="res"></div>
+        <button className='step-hint-button' onClick={() => judgeAnswer3(userAnswer)} id="checkButton">答え合わせ</button>
     </div>}
     </MathJax>
 </div>
