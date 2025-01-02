@@ -86,7 +86,7 @@ const questions = [
         step : "\\(\\frac{3}{5}\\)",
         answer: "37",
         hint1: hintSin,
-        hint2: `ヒント：\\(\\sin\\theta\\)の値が\\(\\frac{3}{5}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→三角比の表に頼ろう！`,
+        hint2: `ヒント：\\(\\sin\\theta\\)の値が\\(\\frac{3}{5}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→分数を少数に直して、三角比の表に頼ろう！`,
         id: 345
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/3-4-5-cos.svg",
@@ -94,7 +94,7 @@ const questions = [
         step : "\\(\\frac{4}{5}\\)",
         answer: "37",
         hint1: hintCos,
-        hint2: `ヒント：\\(\\cos\\theta\\)の値が\\(\\frac{4}{5}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→三角比の表に頼ろう！`,
+        hint2: `ヒント：\\(\\cos\\theta\\)の値が\\(\\frac{4}{5}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→分数を少数に直して、三角比の表に頼ろう！`,
         id: 345
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/3-4-5-tan.svg",
@@ -102,7 +102,7 @@ const questions = [
         step : "\\(\\frac{3}{4}\\)",
         answer: "37",
         hint1: hintTan,
-        hint2: `ヒント：\\(\\tan\\theta\\)の値が\\(\\frac{3}{4}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→三角比の表に頼ろう！`,
+        hint2: `ヒント：\\(\\tan\\theta\\)の値が\\(\\frac{3}{4}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→分数を少数に直して、三角比の表に頼ろう！`,
         id: 345
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/5-12-13-sin.svg",
@@ -110,7 +110,7 @@ const questions = [
         step : "\\(\\frac{5}{13}\\)",
         answer: "23",
         hint1: hintSin,
-        hint2: `ヒント：\\(\\sin\\theta\\)の値が\\(\\frac{5}{13}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→三角比の表に頼ろう！`,
+        hint2: `ヒント：\\(\\sin\\theta\\)の値が\\(\\frac{5}{13}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→分数を少数に直して、三角比の表に頼ろう！`,
         id: 51213
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/5-12-13-cos.svg",
@@ -118,7 +118,7 @@ const questions = [
         step : "\\(\\frac{12}{13}\\)",
         answer: "23",
         hint1: hintCos,
-        hint2: `ヒント：\\(\\cos\\theta\\)の値が\\(\\frac{12}{13}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→三角比の表に頼ろう！`,
+        hint2: `ヒント：\\(\\cos\\theta\\)の値が\\(\\frac{12}{13}\\)であるときの\\(\\theta\\)に当てはまる角度は知らない→分数を少数に直して、三角比の表に頼ろう！`,
         id: 51213
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/5-12-13-tan.svg",
@@ -209,7 +209,7 @@ const choices2 = [
             setQuestion(nextQuestion);
             setUsedQuestions([...usedQuestions, nextQuestion]); // 使用済みリストに追加
             props.scoreChange(); //スコアを+1する関数。GameSettingからpropsで受け取る
-            userAnswer = ""; // ユーザーの解答をリセット
+            setUserAnswer(""); // ユーザーの解答をリセット
             }
     }
 
