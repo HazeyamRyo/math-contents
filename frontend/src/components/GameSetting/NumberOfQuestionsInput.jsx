@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import "./NumberOfQuestionsInput.css";
 
-const NumberOfQuestionsInput = ({ numberOfQuestions, setNumberOfQuestions , maxQuestions, timeAttackMode}) => {
+const NumberOfQuestionsInput = ({ setNumberOfQuestions , maxQuestions,}) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
       const numericValue = parseInt(value, 10);
-      if (numericValue <= maxQuestions) {
+      if (numericValue <= maxQuestions && numericValue > 0) {
         setNumberOfQuestions(numericValue || 0);
         setErrorMessage("");
       } else {
-        setErrorMessage(`※${maxQuestions}以下の数字を入力してください`);
+        setErrorMessage(`※1以上${maxQuestions}以下の数字を入力してください`);
         setTimeout(() => {
-          setNumberOfQuestions(""); // 入力フォームを空にする
+          ; // 入力フォームを空にする
         }, 500);
       }
   };
