@@ -13,7 +13,7 @@ import { Result } from "./Result";
 const GameSettings = (props) => {
   const [mode, setMode] = useState("normal");
   const [difficulty, setDifficulty] = useState("normal");
-  const [numberOfQuestions, setNumberOfQuestions] = useState(9);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [isTimeAttackMode, setIsTimeAttackMode] = useState(false);
   const [countdown, setCountdown] = useState(null);
   const [score, setScore] = useState(1);
@@ -70,10 +70,15 @@ const GameSettings = (props) => {
 
   const handleStart = () => {
     setScore(1);
-    if (isTimeAttackMode) {
-      setCountdown(3);
-    } else {
-      startGame();
+    if (numberOfQuestions <= 0 || numberOfQuestions > props.maxQuestions) {
+        alert("問題数を1以上で設定してください");
+        return;
+    }else{
+      if (isTimeAttackMode) {
+        setCountdown(3);
+      } else {
+        startGame();
+      }
     }
   };
 
