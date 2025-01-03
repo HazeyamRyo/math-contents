@@ -7,6 +7,8 @@ import { TriangleNames } from './TriangleNames.jsx'
 import { TrigonometricRations } from './TrigonometricRations.jsx'
 import { TrigonometricRationsPart2 } from './TrigonometricRationsPart2.jsx'
 import { ApplicationOfTrigonometricRatios } from './ApplicationOfTrigonometricRatios.jsx'
+import { ApplicationOfTrigonometricRatios2 } from './ApplicationOfTrigonometricRatios2.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +19,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/trigonometric-rations" element={<TrigonometricRations />} />
         <Route path="/trigonometric-rations-part2" element={<TrigonometricRationsPart2 />} />
         <Route path="/application-of-trigonometric-ratios" element={<ApplicationOfTrigonometricRatios />} />
+        <Route path="/application-of-trigonometric-ratios2" element={<ApplicationOfTrigonometricRatios2 />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

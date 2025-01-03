@@ -3,27 +3,30 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { IsCorrect } from '../GameSetting/IsCorrect';
 import "./App.css";
 
-const hintSin = "ヒント：今わかっている辺は斜辺と対辺です。この２つの辺の長さから導けるのはどれだろう。";
-const hintCos = "ヒント：今わかっている辺は斜辺と隣辺です。この２つの辺の長さから導けるのはどれだろう。";
-const hintTan = "ヒント：今わかっている辺は対辺と隣辺です。この２つの辺の長さから導けるのはどれだろう。";
+const hintSin = "ヒント：今,辺の長さが分かっている辺は斜辺、\\(x\\)は対辺です。この２つの辺の長さから導けるのはどれだろう。";
+const hintCos = "ヒント：今,辺の長さが分かっている辺は斜辺、\\(x\\)は隣辺です。この２つの辺の長さから導けるのはどれだろう。";
+const hintTan = "ヒント：今,辺の長さが分かっている辺は隣辺、\\(x\\)は隣辺です。この２つの辺の長さから導けるのはどれだろう。";
+const step3Hint = "ヒント:三角比の値は、三角比の表から読み取ろう！";
 
 // 問題のデータ
 const questions = [
-    {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/1-1-√2-sin.svg", 
+    {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-side/3-40-sin.svg", 
         type : "sin", 
-        step : "\\(\\frac{1}{\\sqrt{2}}\\)",
-        answer: "45", 
+        denominator: "3",
+        angle: "40",
+        answer: "1.9284", 
         hint1: hintSin , 
-        hint2: `ヒント：\\(\\sin\\theta\\)の値が\\(\\frac{1}{\\sqrt{2}}\\)であるときの\\(\\theta\\)に当てはまる角度は覚えたような・・`,
-        id: 112
+        hint2: step3Hint,
+        id: 340-1
     },
-    {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/1-1-√2-cos.svg", 
+    {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-side/3-40-cos.svg", 
         type : "cos", 
-        step : "\\(\\frac{1}{\\sqrt{2}}\\)",
-        answer: "45", 
+        denominator: "3",
+        angle: "40",
+        answer: "2.2980", 
         hint1: hintCos , 
-        hint2: `ヒント：\\(\\cos\\theta\\)の値が"\\(\\frac{1}{\\sqrt{2}}\\)"であるときの\\(\\theta\\)に当てはまる角度は覚えたような・・`,
-        id: 112
+        hint2: step3Hint,
+        id: 340-2  //この続きから
     },
     {   Img : import.meta.env.BASE_URL + "application-question-img/find-the-angle/1-1-√2-tan.svg", 
         type : "tan", 
@@ -146,7 +149,7 @@ function checkMatch(event) {
     }
 }
 
-const ApplicationOfTrigonometricRatiosApp = (props) => {
+const ApplicationOfTrigonometricRatiosApp2 = (props) => {
     const difficulty = props.difficulty;
     const totalSteps = 3;
     const [usedQuestions, setUsedQuestions] = useState([]);
@@ -161,11 +164,11 @@ const ApplicationOfTrigonometricRatiosApp = (props) => {
     const [advise2, setAdvise2] = useState(false);
 
     // 問題文とヒントのテキスト
-    const questionText = "問　次の三角形の\\(\\theta\\)の値を求めなさい。";
+    const questionText = "問　次の三角形の\\(x\\)の値を求めなさい。回答は少数第４位までの値を答えよ。";
     const infoText = "一緒に解いてみよう！";
-    const step1 = "STEP1　この直角三角形の2つの辺の長さから求められるのは\\(\\sin\\theta\\),\\(\\cos\\theta\\),\\(\\tan\\theta\\)のうちどれだろう。まずは辺の長さが分かっている辺の名前を考えよう";
-    const step2 = `STEP2　\\(\\${question.type}\\theta\\)の値を求めよう!以下の選択肢のうちどれだろうか。`;
-    const step3 = `STEP3　\\(\\${question.type}\\theta=\\)${question.step}であることが分かりました！\\(\\theta\\)の値を求めよう(三角比の表を利用する場合は、三角比の値が一番近い角度を選んでください。このとき本当の角度とは少し誤差が出ます）`;
+    const step1 = `STEP1　長さが分かっている辺と求めたい辺,\\(x\\)から求められる値は\\(\\sin${question.angle}°\\),\\(\\cos${question.angle}°\\),\\(\\tan${question.angle}°\\)のうちどれだろう。`;
+    const step2 = `STEP2　今分かっている情報から方程式を立ててみよう！以下の選択肢のうちどれだろうか。`;
+    const step3 = `STEP3　立てた方程式の両辺に${question.denominator}をかけると、\\(x=${question.type}${question.angle}°×${question.denominator}\\)であることが分かります！\\(x\\)の値を求めよう`;
 
 
 // 選択肢のデータ
@@ -184,14 +187,6 @@ const choices2 = [
         const randomIndex = Math.floor(Math.random() * questions.length);
         return questions[randomIndex];
     }
-
-
-
-      // MathJaxの再レンダリングを強制する
-    useEffect(() => {
-        window.MathJax && window.MathJax.typeset();
-    }, [question]);
-
 
   // 問題の挙動を作る
     function displayQuestion() {
@@ -306,7 +301,6 @@ return (
     />
     <MathJax>
         <div className='question-text'>{questionText}</div>
-        <p>※三角比の表を用いるときは、表の値が一番近い角度を回答してください。</p>
         {difficulty === "normal" && <div className='question-info'>{infoText}</div>}
     </MathJax>
         <img className='question-img' src={question.Img}  />
@@ -383,5 +377,5 @@ return (
 );
 }
 
-export { ApplicationOfTrigonometricRatiosApp };
+export { ApplicationOfTrigonometricRatiosApp2 };
 

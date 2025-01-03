@@ -22,7 +22,9 @@ export const Contents = () => {
         <List 
           title='★三角比の応用' 
           items={[
-            {link: '/application-of-trigonometric-ratios', text: '三角比の値を利用して角度や辺の長さを求める'}
+            {link: '/application-of-trigonometric-ratios', text: '三角比の値を利用して角の大きさを求める'},
+            {link: '/application-of-trigonometric-ratios2', text: '三角比の値を利用して辺の長さを求める'}
+
           ]}
         />
         </div>
