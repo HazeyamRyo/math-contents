@@ -280,6 +280,12 @@ const choices2 = [
     };
 
 
+    // MathJaxの再レンダリングを強制する
+    useEffect(() => {
+        window.MathJax && window.MathJax.typeset();
+        console.log("useEffect");
+    }, [question,currentStep,isCorrect,isWrong]);
+
 
 return (
 <MathJaxContext>
